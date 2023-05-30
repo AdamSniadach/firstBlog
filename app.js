@@ -33,12 +33,10 @@ app.get("/post/:userId/", (req, res) => {
 
     if (postTitle === requestedTitle) {
       console.log("Match");
-      // Generate a new subpage for the matched post
-      // You can use res.render() or res.sendFile() to send an HTML template for the subpage
-      // For example:
+
       res.render("post", {
         startingContent: homeStartingContent,
-        posts: posts, // Pass the posts array as a variable
+        posts: posts,
       }); // Assuming you have a template called "subpage.ejs"
     }
   });
