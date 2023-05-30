@@ -1,7 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const { constant } = require("lodash");
+
+const _ = require("lodash");
 const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,6 +24,26 @@ app.get("/", (req, res) => {
     posts: posts, // Pass the posts array as a variable
   });
 });
+
+app.get("/post/:userId/", (req, res) => {
+  const requestedTitle = _.lowerCase(req.params.userId);
+
+  posts.forEach(function (post) {
+    const postTitle = _.lowerCase(post.title);
+
+    if (postTitle === requestedTitle) {
+      console.log("Match");
+      // Generate a new subpage for the matched post
+      // You can use res.render() or res.sendFile() to send an HTML template for the subpage
+      // For example:
+      res.render("post", {
+        startingContent: homeStartingContent,
+        posts: posts, // Pass the posts array as a variable
+      }); // Assuming you have a template called "subpage.ejs"
+    }
+  });
+});
+
 app.get("/contact", function (req, res) {
   res.render("contact", { contactContent: contactContent });
 });
