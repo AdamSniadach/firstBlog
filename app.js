@@ -36,7 +36,7 @@ app.get("/post/:userId/", (req, res) => {
 
       res.render("post", {
         startingContent: homeStartingContent,
-        posts: posts,
+        post: post,
       }); // Assuming you have a template called "subpage.ejs"
     }
   });

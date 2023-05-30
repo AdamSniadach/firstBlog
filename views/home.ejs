@@ -6,4 +6,12 @@
 <% posts.forEach(function(post) { %>
 <h2><%= post.title %></h2>
 <p><%= post.content %></p>
+<button onclick="goToPostPage('<%= post.title %>')">Go to Post Page</button>
+
 <% }) %> <%- include('partials/footer'); -%>
+<script>
+  function goToPostPage(userId) {
+    var url = "/post/" + userId + "/";
+    window.location.href = url;
+  }
+</script>
